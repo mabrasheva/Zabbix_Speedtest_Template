@@ -27,26 +27,28 @@ The repository includes two scripts necessary for the templates to function:
     /usr/lib/zabbix/externalscripts/
 
 3. **Make the Scripts Executable:**
-```bash
-    sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_auto.sh
-    sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_custom.sh
+   ```bashs
+   sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_auto.sh
+   sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_custom.sh
 
 4. **GDPR Compliance**
 To comply with GDPR regulations, a GDPR agreement file must be saved in a specified directory before running Speedtest.
 
-**Create the Directory:**
-```bash
+5. **Create the Directory:**
+   ```bash
     sudo mkdir -p /var/lib/zabbix
-Set Directory Permissions:
-```bash
+
+6. **Set Directory Permissions:**
+   ```bash
     sudo chmod o+rw /var/lib/zabbix
 
 ### Speedtest Utility Installation
 
-5. **Intall the speedtest utility from Speedtest Ookla site:**
+7. **Intall the speedtest utility from Speedtest Ookla site:**
     https://www.speedtest.net/apps/cli
 
-**Verify Installation**
+8. **Verify Installation**
+   ```bash
     speedtest --version
 
 ### Zabbix Version Compatibility
