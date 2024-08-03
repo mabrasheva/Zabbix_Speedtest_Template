@@ -1,0 +1,1 @@
+# Zabbix_Speedtest_Template
