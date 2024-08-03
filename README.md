@@ -32,7 +32,7 @@ The repository includes two scripts necessary for the templates to function:
    sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_custom.sh
 
 4. **GDPR Compliance**
-To comply with GDPR regulations, a GDPR agreement file must be saved in a specified directory before running Speedtest.
+   - To comply with GDPR regulations, a GDPR agreement file must be saved in a specified directory before running Speedtest.
 
 5. **Create the Directory:**
    ```bash
@@ -45,7 +45,7 @@ To comply with GDPR regulations, a GDPR agreement file must be saved in a specif
 ### Speedtest Utility Installation
 
 7. **Intall the speedtest utility from Speedtest Ookla site:**
-    https://www.speedtest.net/apps/cli
+    - https://www.speedtest.net/apps/cli
 
 8. **Verify Installation**
    ```bash
