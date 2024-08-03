@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2024-08-03T14:20:23Z</date>
+    <groups>
+        <group>
+            <name>Templates/Applications</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Speedtest Ookla with Specified Server</template>
+            <name>Template Speedtest Ookla with Specified Server</name>
+            <description>Template using external shell script executing speedtest by Ookla and gathering statistics.&#13;
+You need to specify a server ID in the host macro {$SPEEDTEST_SERVER_ID}. &#13;
+You can list the nearest server IDs with command: speedtest -L</description>
+            <groups>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Master Items</name>
+                </application>
+                <application>
+                    <name>Ping Latency</name>
+                </application>
+                <application>
+                    <name>Remote Speed Server Info</name>
+                </application>
+                <application>
+                    <name>Speed</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Speedtest Download Speed</name>
+                    <type>DEPENDENT</type>
+                    <key>speedtest.download.bandwidth</key>
+                    <delay>0</delay>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>Speed</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.download.bandwidth</params>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.000008</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>speedtest_ookla_specified_server.sh[&quot;{$SPEEDTEST_SERVER_ID}&quot;]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Speedtest Ping Latency</name>
+                    <type>DEPENDENT</type>
+                    <key>speedtest.ping.latency</key>
+                    <delay>0</delay>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ms</units>
+                    <applications>
+                        <application>
+                            <name>Ping Latency</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.ping.latency</params>
+                        </step>
+                        <step>
+                            <type>REGEX</type>
+                            <params>(\d+)\.\d+
+\1</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>speedtest_ookla_specified_server.sh[&quot;{$SPEEDTEST_SERVER_ID}&quot;]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Speedtest Server IP</name>
+                    <type>DEPENDENT</type>
+                    <key>speedtest.server.ip</key>
+                    <delay>0</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Remote Speed Server Info</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.server.ip</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>speedtest_ookla_specified_server.sh[&quot;{$SPEEDTEST_SERVER_ID}&quot;]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Speedtest Server Location</name>
+                    <type>DEPENDENT</type>
+                    <key>speedtest.server.location</key>
+                    <delay>0</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Remote Speed Server Info</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.server.location</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>speedtest_ookla_specified_server.sh[&quot;{$SPEEDTEST_SERVER_ID}&quot;]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Speedtest Upload Speed</name>
+                    <type>DEPENDENT</type>
+                    <key>speedtest.upload.bandwidth</key>
+                    <delay>0</delay>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>Speed</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.upload.bandwidth</params>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.000008</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>speedtest_ookla_specified_server.sh[&quot;{$SPEEDTEST_SERVER_ID}&quot;]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Speedtest Master to server id {$SPEEDTEST_SERVER_ID}</name>
+                    <type>EXTERNAL</type>
+                    <key>speedtest_ookla_specified_server.sh[&quot;{$SPEEDTEST_SERVER_ID}&quot;]</key>
+                    <delay>1h</delay>
+                    <history>0</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Master Items</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$SPEEDTEST_SERVER_ID}</macro>
+                    <value>8862</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
