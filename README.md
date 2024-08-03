@@ -22,34 +22,54 @@ The repository includes two scripts necessary for the templates to function:
 1. **Download the External Scripts:**
    - Download the `speedtest_ookla.sh` and `speedtest_ookla_specified_server.sh` files from this repository.
 
+
 2. **External Scripts Directory:**
    ```bash
     /usr/lib/zabbix/externalscripts/
+   ```
 
 3. **Make the Scripts Executable:**
-   ```bashs
+   ```bash
    sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_ookla.sh
    sudo chmod +x /usr/lib/zabbix/externalscripts/speedtest_ookla_specified_server.sh
+   ```
+   
+4. **Configure Zabbix to Use External Scripts**
+   Depending on whether you're running the script from the Zabbix server or proxy, configure the relevant configuration file.
+   For Zabbix Server: /etc/zabbix/zabbix_server.conf
+   For Zabbix Proxy: /etc/zabbix/zabbix_proxy.conf 
+   Ensure the ExternalScripts parameter points to the directory containing your script:
+   ```bash
+   ExternalScripts=/usr/lib/zabbix/externalscripts
+   ```
 
-4. **GDPR Compliance**
+
+5. **GDPR Compliance**
    - To comply with GDPR regulations, a GDPR agreement file must be saved in a specified directory before running Speedtest.
 
-5. **Create the Directory:**
+
+
+6. **Create the Directory:**
    ```bash
     sudo mkdir -p /var/lib/zabbix
+   ```
 
-6. **Set Directory Permissions:**
+7. **Set Directory Permissions:**
    ```bash
     sudo chmod o+rw /var/lib/zabbix
+   ```
+
 
 ### Speedtest Utility Installation
 
-7. **Intall the speedtest utility from Speedtest Ookla site:**
+8. **Intall the speedtest utility from Speedtest Ookla site:**
     - https://www.speedtest.net/apps/cli
 
-8. **Verify Installation**
+   
+9. **Verify Installation**
    ```bash
     speedtest --version
+   ```
 
 ### Zabbix Version Compatibility
-These templates have been tested on Zabbix version 5.0.
+   - These templates have been tested on Zabbix version 5.0.
